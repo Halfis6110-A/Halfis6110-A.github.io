@@ -94,8 +94,8 @@
 <script>
     function solveOperation() {
       // Obtener los valores ingresados por el usuario
-      var num1 = document.getElementById("num1").value;
-      var num2 = document.getElementById("num2").value;
+      var num1 = parseFloat(document.getElementById("num1").value);
+      var num2 = parseFloat(document.getElementById("num2").value);
       var operator = document.getElementById("operator").value;
       
       // Evaluar la operación matemática seleccionada
@@ -104,16 +104,19 @@
         
         switch (operator) {
           case "+":
-            result = parseFloat(num1) + parseFloat(num2);
+            result = num1 + num2;
             break;
           case "-":
-            result = parseFloat(num1) - parseFloat(num2);
+            result = num1 - num2;
             break;
           case "*":
-            result = parseFloat(num1) * parseFloat(num2);
+            result = num1 * num2;
             break;
           case "/":
-            result = parseFloat(num1) / parseFloat(num2);
+            result = num1 / num2;
+            break;
+          case "sqrt":
+            result = Math.sqrt(num1);
             break;
           default:
             throw new Error("Invalid operator");
@@ -126,8 +129,7 @@
         document.getElementById("result").value = "Error: " + error.message;
       }
     }
-
-  </script>
+</script>
 </head>
 
 <body bgcolor="white" text="black">
@@ -160,7 +162,7 @@
 <script src="Archivos/index.js"></script>
 <div class="container">
     <label for="num1">Number 1:</label>
-    <input type="text" id="num1" placeholder="Enter the first number" />
+    <input type="text" id="num1" placeholder="Enter the number" />
     
     <label for="operator">Operator:</label>
     <select id="operator" style="font-size: 18px;">
@@ -168,16 +170,17 @@
       <option value="-">-</option>
       <option value="*">*</option>
       <option value="/">/</option>
+      <option value="sqrt">√</option>
     </select>
     
     <label for="num2">Number 2:</label>
-    <input type="text" id="num2" placeholder="Enter the second number" />
+    <input type="text" id="num2" placeholder="Enter the number" />
     
     <button onclick="solveOperation()">Solve</button>
     
     <label for="result">Result:</label>
     <input type="text" id="result" readonly />
-  </div>
+</div>
 
 </body>
 </html>
